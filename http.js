@@ -102,10 +102,9 @@ rout
 <html lang="en">
 <head>
 <meta charset="utf-8" >
+<script src="./app.js"></script>
 </head>
-<body>
-<p>hi.</p>
-</body></html>
+<body>loading...</body></html>
 	`;
 })
 .get('/pt', (context)=>{
