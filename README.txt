@@ -33,6 +33,7 @@ result:
 - provided the variables/paths are correct should see it working
 - when I run locally it replicates to the bucket
 - every instance startup on cloud run restores from the bucket, showing the same info that collected over time
+- periodically /info updates to show the database file grow in tmp
 
 referenced:
 - https://github.com/steren/litestream-cloud-run-example
