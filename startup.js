@@ -1,7 +1,7 @@
 /*
 
 run locally with:
-SQLITE_PATH=./data/data.db && LSSQLITE_REPLICA_URL='gcs://jimmont-sqlite-litestream/data.db' && deno run -A --unstable startup.js
+SQLITE_PATH=/tmp/data.db && LSSQLITE_REPLICA_URL='gcs://jimmont-sqlite-litestream/data.db' && deno run -A --unstable startup.js
 
 ref
 https://litestream.io/guides/docker/
@@ -28,8 +28,8 @@ async function _setupSqlite(path, url){
 
 		// creates db, if replica exists
 		let cmd = new Deno.Command("litestream", { args: ['restore', '-v', '-if-replica-exists', '-o', path, url] });
-		let { code, stdout, stderr } = await cmd.output();
-		console.log(`startup.js setup ok ${ code }`);
+		await cmd.output();
+
 	}catch(error){
 		console.log(`startup.js setup failed "${error?.message ?? error}"`, {error});
 	}

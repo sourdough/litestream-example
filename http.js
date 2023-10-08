@@ -26,7 +26,7 @@ if(!db) throw `db not available "${ db }"`;
 
 // default expiration caching (minimum 1 second);
 const expires = {
-	normal: 'public, max-age=8, s-maxage=8'
+	normal: 'public, max-age=60, s-maxage=60'
 	,fast: 'public, max-age=1, s-maxage=1'
 }
 
@@ -130,6 +130,16 @@ rout
 	}catch(error){
 		console.log(`sqlite error /pts`,error);
 		context.response.body = JSON.stringify({error});
+	}
+})
+.get('/info', (context)=>{
+	const path = db?.path ?? '';
+	try{
+		const info = await Deno.stat(path);
+		context.response.body = JSON.stringify({path,info});
+	}catch(error){
+		console.log(`sqlite error`,error);
+		context.response.body = JSON.stringify({path,error});
 	}
 })
 ;

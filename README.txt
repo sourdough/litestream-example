@@ -24,10 +24,10 @@ gcloud beta run deploy my-bucket --image gcr.io/my-project/my-bucket:20231005.1 
 optionally eliminate cold starts while reducing idle cost:
 add min-instance of 1 to minimize startup time and throttle the CPU when not processing requests
 using --min-instances 1 and --cpu-throttling
-gcloud beta run deploy my-bucket --image gcr.io/my-project/my-bucket:20231005.1  --cpu-throttling --min-instances 1 --max-instances 1 --execution-environment gen2 --no-cpu-throttling --allow-unauthenticated --region us-west1 --project my-project
+gcloud beta run deploy my-bucket --image gcr.io/my-project/my-bucket:20231005.1  --cpu-throttling --min-instances 1 --max-instances 1 --execution-environment gen2 --allow-unauthenticated --region us-west1 --project my-project
 
 run locally (terminal command):
-SQLITE_PATH=./data/data.db && LSSQLITE_REPLICA_URL='gcs://bucket-name/data/data.db' && deno run -A --unstable startup.js
+SQLITE_PATH=/tmp/data.db && LSSQLITE_REPLICA_URL='gcs://bucket-name/data/data.db' && deno run -A --unstable startup.js
 
 result:
 - provided the variables/paths are correct should see it working

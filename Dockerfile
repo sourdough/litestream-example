@@ -6,7 +6,7 @@ FROM denoland/deno:1.37.1
 # see https://github.com/steren/litestream-cloud-run-example
 # note that Livestream expects gcs:// instead of gs://, this will change in the next Litestream release
 ENV LSSQLITE_REPLICA_URL=gcs://jimmont-sqlite-litestream/data/data.db
-ENV SQLITE_PATH=./data/data.db
+ENV SQLITE_PATH=/tmp/data.db
 
 # fix error "failed to verify certificate: x509: certificate signed by unknown authority"
 # ca-certificates package includes update-ca-certificates command
@@ -23,7 +23,6 @@ COPY . .
 RUN deno cache deps.js
 RUN deno cache startup.js
 RUN deno cache http.js
-#RUN mkdir -p /data
 
 # default 8080 cloud-run https://cloud.google.com/run/docs/reference/container-contract
 EXPOSE 8080
