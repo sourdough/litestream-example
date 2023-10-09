@@ -131,7 +131,7 @@ rout
 		context.response.body = JSON.stringify({error});
 	}
 })
-.get('/info', (context)=>{
+.get('/info', async (context)=>{
 	const path = db?.path ?? '';
 	try{
 		const info = await Deno.stat(path);

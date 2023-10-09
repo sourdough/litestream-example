@@ -1,7 +1,7 @@
 /*
 
 run locally with:
-SQLITE_PATH=/tmp/data.db && LSSQLITE_REPLICA_URL='gcs://jimmont-sqlite-litestream/data.db' && deno run -A --unstable startup.js
+SQLITE_PATH=/tmp/data.db && LSSQLITE_REPLICA_URL='gcs://BUCKET/data/data.db' && deno run -A --unstable startup.js
 
 ref
 https://litestream.io/guides/docker/
@@ -11,7 +11,7 @@ https://github.com/denodrivers/sqlite3/blob/main/doc.md
  * */
 import { pafs, Database, exists } from "./deps.js";
 
-const { SQLITE_PATH = './PATH', LSSQLITE_REPLICA_URL = 'gcs://BUCKET/PATH' } = Deno.env.toObject();
+const { SQLITE_PATH = '/tmp/data.db', LSSQLITE_REPLICA_URL = 'gcs://BUCKET/data/data.db' } = Deno.env.toObject();
 async function _setupSqlite(path, url){
 	console.log(`startup.js setup sqlite "${ path }" "${ url }"`);
 
